@@ -1,0 +1,26 @@
+# Deep Learning
+torch==2.14.1
+torchvision==0.29.2
+
+# Explainability (XAI)
+captum==0.9.0
+grad-cam==1.5.7
+
+# Data processing
+numpy==2.2.6
+pandas==2.3.3
+scipy==1.15.3
+scikit-learn==1.7.2
+
+# Visualization
+matplotlib==3.10.9
+seaborn==0.13.2
+
+# Image processing
+Pillow==12.3.0
+
+# Environmental impact tracking
+codecarbon==3.3.2
+
+# Notebooks
+jupyter
