@@ -8,7 +8,7 @@ from PIL import Image
 # del directorio desde el que se ejecute el notebook.
 ROOT = Path(__file__).resolve().parents[2]
 
-# Ruta por defecto del dataset.
+# Ruta del dataset.
 DATASET_PATH = ROOT / "data" / "imagenette2-320"
 
 
@@ -43,7 +43,7 @@ def extractData(
         for image in sample:
             selected_img.append({
                 "image_id": image.stem,
-                "path": str(image),
+                "path": str(image.relative_to(ROOT)),
                 "true_label": d.name
             })
 
@@ -52,7 +52,8 @@ def extractData(
 
 def get_img(row):
 
-    image_path = Path(row["path"])
+    # Reconstruir la ruta absoluta a partir de la relativa.
+    image_path = ROOT / row["path"]
 
     if not image_path.is_file():
         raise FileNotFoundError(
@@ -64,7 +65,12 @@ def get_img(row):
 
     return {
         "image_id": row["image_id"],
-        "path": str(image_path),
+        "path": row["path"],
         "true_label": row["true_label"],
         "image": image
     }
+
+def createFil_selectedImages(dataframe: pd.DataFrame):
+    dataframe.to_csv(ROOT / "metadata" / "selected_images.csv")
+
+    return dataframe.head(10)
