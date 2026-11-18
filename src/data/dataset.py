@@ -73,4 +73,4 @@ def get_img(row):
 def createFil_selectedImages(dataframe: pd.DataFrame):
     dataframe.to_csv(ROOT / "metadata" / "selected_images.csv")
 
-    return dataframe.head(10)
+    return dataframe.head(3)
